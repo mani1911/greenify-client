@@ -1,7 +1,7 @@
 import React from "react";
 
 const PageNotFound = () => {
-  return <div>PageNotFound</div>;
+  return <main>PageNotFound</main>;
 };
 
 export default PageNotFound;

@@ -11,12 +11,12 @@ const Signup = () => {
     console.log(username, password);
   };
   return (
-    <div
+    <main
       className={`h-[100vh] ${styles.container} flex items-center justify-center`}
     >
-      <div className="w-[34.86%] h-[60%] bg-white p-10 px-19 font-bold">
-        <p className="text-6xl">Greenify</p>
-        <p className="mt-[5.5%] text-2xl font-medium">Make your Account</p>
+      <div className="w-[34.86%] h-[60%] bg-white p-10 px-19 font-bold min-w-[330px]">
+        <p className="text-3xl text-green-500">Greenify</p>
+        <p className="mt-[5.5%] text-lg font-medium">Make your Account</p>
         <div>
           <div className="mt-[4.1%]">
             <p className="font-light">Username</p>
@@ -59,7 +59,7 @@ const Signup = () => {
           </p>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

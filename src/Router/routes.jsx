@@ -1,6 +1,12 @@
-import { Login, PageNotFound, Signup } from "../Pages";
+import { Login, PageNotFound, Signup ,Dashboard} from "../Pages";
 
 const routes = [
+  {
+    title: "Dashboard",
+    path: "/",
+    description: "Dashboard Page",
+    element: <Dashboard />,
+  },
   {
     title: "Signup",
     path: "/register",
@@ -9,7 +15,7 @@ const routes = [
   },
   {
     title: "Login",
-    path: "/",
+    path: "/login",
     description: "Login Page",
     element: <Login />,
   },
