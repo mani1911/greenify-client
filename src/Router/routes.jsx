@@ -1,6 +1,12 @@
-import { Login, PageNotFound } from "../Pages";
+import { Login, PageNotFound, Signup } from "../Pages";
 
 const routes = [
+  {
+    title: "Signup",
+    path: "/register",
+    description: "Sign Up Page",
+    element: <Signup />,
+  },
   {
     title: "Login",
     path: "/",

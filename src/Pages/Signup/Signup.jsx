@@ -1,22 +1,22 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "../../Components/Button/button";
 import styles from "./styles.module.css";
-const Login = () => {
+import { useNavigate } from "react-router-dom";
+const Signup = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginHandler = () => {
+  const signUpHandler = () => {
     console.log(username, password);
   };
   return (
     <div
       className={`h-[100vh] ${styles.container} flex items-center justify-center`}
     >
-      <div className="w-[34.86%] h-[60%] bg-white p-10 px-19 font-bold min-h-[600px] min-w-[330px]">
+      <div className="w-[34.86%] h-[60%] bg-white p-10 px-19 font-bold">
         <p className="text-6xl">Greenify</p>
-        <p className="mt-[5.5%] text-2xl font-medium">Login to your account</p>
+        <p className="mt-[5.5%] text-2xl font-medium">Make your Account</p>
         <div>
           <div className="mt-[4.1%]">
             <p className="font-light">Username</p>
@@ -41,21 +41,20 @@ const Login = () => {
           <div
             className="w-[100%] flex justify-center"
             onClick={() => {
-              loginHandler();
+              signUpHandler();
             }}
           >
             <Button />
           </div>
-
           <p className="mt-4 font-light">
-            Don't have an Account?{" "}
+            Already have an Account?{" "}
             <span
               className="text-green-500 cursor-pointer underline"
               onClick={() => {
-                navigate("/register");
+                navigate("/");
               }}
             >
-              Sign Up
+              Login
             </span>
           </p>
         </div>
@@ -64,4 +63,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
