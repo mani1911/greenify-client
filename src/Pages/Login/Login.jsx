@@ -1,22 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../../Components/Button/button";
 import styles from "./styles.module.css";
+import axios from "axios";
+import { config } from "../../env";
+import { useAuth } from "../../Utils/AuthContext";
 const Login = () => {
+  const auth = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginHandler = () => {
-    console.log(username, password);
+  const backendUrl = config.backend_url
+
+  const handleLogin = async(e) => {
+    e.preventDefault()
+    const res = await axios.post(`${backendUrl}/auth/login`,{
+      username,
+      password
+    })
+    const data = res.data
+    if(data.status!==200){
+      alert(data.message)
+    }
+    else{
+      localStorage.setItem("accessToken",JSON.stringify(data.token))
+      navigate("/")
+    }
   };
+
+  useEffect(()=>{
+    if(auth.auth){
+      navigate("/")
+    }
+  },[auth])
+  
   return (
     <main
       className={`h-[100vh] ${styles.container} flex items-center justify-center`}
     >
-      <div className="w-[34.86%] h-[60%] bg-white p-10 px-19 font-bold min-w-[330px]">
-        <p className="text-3xl text-green-500">Greenify</p>
-        <p className="mt-[5.5%] text-lg font-medium text-gray-500">Login to your account</p>
+      <form className="w-[34.86%] h-[60%] bg-white p-10 px-19 font-bold min-w-[330px] flex flex-col gap-4" onSubmit={handleLogin}>
+        <div className="flex items-center gap-3">
+          <img src="assets/logo.png" alt="Our logo" className="w-[50px]" />
+          <h1 className="text-2xl text-green-500">Greenify</h1>
+          
+        </div>
+        <p className="mt-[5.5%] text-sm font-medium text-gray-500">Login to your account</p>
         <div>
           <div className="mt-[4.1%]">
             <p className="font-light">Username</p>
@@ -25,6 +53,8 @@ const Login = () => {
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
+              required
+              minLength={5}
             />
           </div>
           <div className="mt-[4.1%]">
@@ -34,20 +64,20 @@ const Login = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
+              type="password"
+              required
+              minLength={5}
             />
           </div>
         </div>
-        <div className="flex flex-col items-center mt-7 w-[100%]">
+        <div className="flex flex-col items-center mt-3 w-[100%]">
           <div
             className="w-[100%] flex justify-center"
-            onClick={() => {
-              loginHandler();
-            }}
           >
-            <Button />
+            <button className="bg-green-400 text-white rounded-md w-[70%] h-[50px] flex justify-center items-center cursor-pointer hover:bg-green-500">Login</button>
           </div>
 
-          <p className="mt-4 font-light">
+          <p className="mt-4 font-light text-center">
             Don't have an Account?{" "}
             <span
               className="text-green-500 cursor-pointer underline"
@@ -59,7 +89,7 @@ const Login = () => {
             </span>
           </p>
         </div>
-      </div>
+      </form>
     </main>
   );
 };

@@ -2,12 +2,6 @@ import { Login, PageNotFound, Signup ,Dashboard} from "../Pages";
 
 const routes = [
   {
-    title: "Dashboard",
-    path: "/",
-    description: "Dashboard Page",
-    element: <Dashboard />,
-  },
-  {
     title: "Signup",
     path: "/register",
     description: "Sign Up Page",
@@ -18,6 +12,12 @@ const routes = [
     path: "/login",
     description: "Login Page",
     element: <Login />,
+  },
+  {
+    title: "Dashboard",
+    path: "/",
+    description: "Dashboard Page",
+    element: <Dashboard />,
   },
   {
     title: "Page Not Found",

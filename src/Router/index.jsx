@@ -9,7 +9,7 @@ const Router = () => {
       <Routes>
         {routes.map((route) => {
           return (
-            <Route key={route.path} path={route.path} element={route.element} />
+            <Route key={route.path} path={route.path} element={route.element}/>
           );
         })}
         <Route path="*" element={<PageNotFound />} />
